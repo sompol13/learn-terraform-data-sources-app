@@ -7,7 +7,7 @@ terraform {
 }
 
 provider "aws" {
-  region = "us-east-1"
+  region = data.terraform_remote_state.vpc.outputs.aws_region
 }
 
 resource "random_string" "lb_id" {
@@ -24,8 +24,8 @@ module "elb_http" {
 
   internal = false
 
-  security_groups = []
-  subnets         = []
+  security_groups = data.terraform_remote_state.vpc.outputs.lb_security_group_ids
+  subnets         = data.terraform_remote_state.vpc.outputs.public_subnet_ids
 
   number_of_instances = length(aws_instance.app)
   instances           = aws_instance.app.*.id
@@ -62,4 +62,12 @@ resource "aws_instance" "app" {
     sudo systemctl start httpd
     echo "<html><body><div>Hello, world!</div></body></html>" > /var/www/html/index.html
     EOF
+}
+
+data "terraform_remote_state" "vpc" {
+  backend = "local"
+
+  config = {
+    path = "../learn-terraform-data-sources-vpc/terraform.tfstate"
+  }
 }
