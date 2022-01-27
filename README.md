@@ -21,6 +21,8 @@ In this tutorial, you will use Terraform to deploy a workspace containing a VPC 
 - After a few minutes, the load balancer health checks will pass, and will return the example response.
 - `curl $(terraform output -raw lb_url)`
 
+<img width="565" alt="Screen Shot 2565-01-27 at 14 07 31" src="https://user-images.githubusercontent.com/33342822/151308878-cc772a1f-9001-4203-9a56-dac789054cf6.png">
+
 > Note: You must destroy the application workspace before the VPC workspace. Since the resources in the application workspace depend on those in the VPC workspace, the AWS API will return an error if you attempt to destroy the VPC first.
 
 ### Reference
