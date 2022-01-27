@@ -10,5 +10,9 @@ In this tutorial, you will use Terraform to deploy a workspace containing a VPC 
 - The configuration in `main.tf` only uses a single EC2 instance.
 - Update the configuration to use multiple EC2 instances per subnet.
 
+### Configure region-specific AMIs
+- Use an `aws_ami` data source to load the correct AMI ID for the current region. Add the following to `main.tf`.
+- Replace the hard-coded AMI ID with the one loaded from the new data source.
+
 ### Reference
 https://learn.hashicorp.com/tutorials/terraform/data-sources
