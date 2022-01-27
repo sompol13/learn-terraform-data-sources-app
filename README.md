@@ -6,5 +6,9 @@ In this tutorial, you will use Terraform to deploy a workspace containing a VPC 
 - Replace the hard-coded region configuration in `main.tf` with the region output from the VPC workspace.
 - Configure the load balancer security group and subnet arguments with the corresponding outputs from your VPC workspace.
 
+### Scale EC2 instances
+- The configuration in `main.tf` only uses a single EC2 instance.
+- Update the configuration to use multiple EC2 instances per subnet.
+
 ### Reference
 https://learn.hashicorp.com/tutorials/terraform/data-sources
